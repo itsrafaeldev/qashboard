@@ -23,8 +23,8 @@ return new class extends Migration
             QUANTITY_INSTALLMENT INTEGER NOT NULL,
             CURRENT_INSTALLMENT INTEGER NOT NULL,
             VALUE_INSTALLMENT NUMERIC(10, 2) GENERATED ALWAYS AS (AMOUNT / NULLIF(QUANTITY_INSTALLMENT, 0)) STORED,
-            CREATE_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
-            UPDATE_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL
+            CREATED_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
+            UPDATED_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL
             );
         ');
 
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('REGISTRIES');
+        DB::statement('DROP TABLE IF EXISTS registries;');
     }
 };
