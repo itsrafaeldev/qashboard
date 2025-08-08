@@ -15,8 +15,8 @@ return new class extends Migration
             CREATE TABLE TRANSACTION (
             ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
             DESCRIPTION VARCHAR(30) NOT NULL,
-            CREATE_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
-            UPDATE_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL
+            CREATED_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
+            UPDATED_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL
             );
         ");
     }
@@ -26,6 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('TRANSACTION');
+        DB::statement(
+            'DROP TABLE IF EXISTS transaction;'
+        );
     }
 };
