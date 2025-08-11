@@ -18,11 +18,13 @@
     <!-- CSS do DevExtreme -->
     <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.light.css">
 
+    <link rel="shortcut icon" href="{{ asset('coin.png') }}" type="image/x-icon">
+
     @stack('stlye')
 
 
 
-    <title>@yield('title')</title>
+    <title>Qashboard - @yield('title')</title>
 </head>
 
 <body>
@@ -32,8 +34,8 @@
             <a href="#">
                 <li>Dashboard</li>
             </a>
-            <a href="#">
-                <li>Entradas</li>
+            <a href="{{ route('registries.list') }}">
+                <li>Registros</li>
             </a>
             <a href="{{ route('categories.list') }}">
                 <li>Categorias</li>
