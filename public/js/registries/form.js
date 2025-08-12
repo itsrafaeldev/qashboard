@@ -1,19 +1,31 @@
-const category_id = $("#category_id").val();
+const registry_id = $("#registry_id").val();
+console.log("registry_id: ", registry_id);
 $("#btn-gravar").click(function (event) {
     event.preventDefault();
 
-    const category_name_value = $("#category_name").val();
+    const registry_name_value = $("#registry_name").val();
     const description_value = $("#description").val();
+    const status_value = $("#status").val();
+    const registry_date_value = $("#registry_date").val();
+    const amount_value = $("#amount").val();
+    const transaction_id_value = $("#transaction_id").val();
+    const category_id_value = $("#category_id").val();
+    const quantity_installment_value = $("#quantity_installment").val();
 
-    const url = category_id > 0 ? '/categories/update' : "/categories/save"
-    const method = category_id > 0 ? "PUT" : "POST";
+
     $.ajax({
-        url: url,
-        method: method,
+        url: "/registries/save",
+        method: "POST",
         data: JSON.stringify({
-            id: category_id,
-            category_name: category_name_value,
+            id: registry_id,
+            registry_name: registry_name_value,
             description: description_value,
+            status: status_value,
+            registry_date: registry_date_value,
+            amount: amount_value,
+            quantity_installment: quantity_installment_value,
+            transaction_id: transaction_id_value,
+            category_id: category_id_value,
         }),
         contentType: "application/json",
         headers: {
@@ -22,7 +34,7 @@ $("#btn-gravar").click(function (event) {
         success: function (res) {
             if (res.success) {
                 alert(res.success);
-                window.location.href = "/categories";
+                window.location.href = "/registries";
             }
         },
         error: function (xhr, status, erro) {
@@ -35,14 +47,14 @@ $("#btn-gravar").click(function (event) {
 
 $("#btn-delete").click(function () {
     $.ajax({
-        url: `/categories/${category_id}`,
+        url: `/registries/${registry_id}`,
         method: "DELETE",
         contentType: "application/json",
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
         success: function (res) {
-            window.location.href = "/categories";
+            window.location.href = "/registries";
         },
         error: function (xhr, status, erro) {
             console.error("Erro:", erro);
