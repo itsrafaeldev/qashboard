@@ -63,3 +63,10 @@ $("#btn-delete").click(function () {
         },
     });
 });
+
+$(document).ready(function () {
+    if (registry_id > 0) {
+        $("#amount").prop("disabled", true).css('cursor', 'not-allowed');
+        $("#quantity_installment").prop("disabled", true).css('cursor', 'not-allowed');
+    }
+})

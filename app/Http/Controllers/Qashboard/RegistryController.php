@@ -51,8 +51,6 @@ class RegistryController extends Controller
 
         try {
             $data = $request->json()->all();
-
-
             $registry = Registry::updateOrCreate(
                 ['id' => $data['id'] ?? null],
                 [
@@ -62,12 +60,9 @@ class RegistryController extends Controller
                     'transaction_id' => $data['transaction_id'],
                     'category_id' => $data['category_id'],
                     'registry_date' => $data['registry_date'],
-
-
                 ]
             );
-
-            if ($registry->installments->exists()) {
+            if (!$registry->installments()->exists()) {
                 for ($contador = 1; $contador <= $data['quantity_installment']; $contador++) {
                     $registry->installments()->create(
                         [
@@ -79,9 +74,10 @@ class RegistryController extends Controller
                     );
                 }
             }
+            
 
             // $registry->load('installments');
-            dd($registry);
+            // dd($registry);
 
             return response()->json(['success' => 'Operação realizada com sucesso!'], 200);
         } catch (\Throwable $e) {
@@ -90,7 +86,7 @@ class RegistryController extends Controller
 
     }
     public function delete(Registry $registry)
-    {   
+    {
         $registry->delete();
         return response()->json(204);
     }
