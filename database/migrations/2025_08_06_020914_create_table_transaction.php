@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("
-            CREATE TABLE TRANSACTION (
-            ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-            DESCRIPTION VARCHAR(30) NOT NULL,
-            CREATED_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
-            UPDATED_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL
-            );
-        ");
+        // DB::statement("
+        //     CREATE TABLE TRANSACTION (
+        //     ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        //     DESCRIPTION VARCHAR(30) NOT NULL,
+        //     CREATED_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
+        //     UPDATED_AT TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL
+        //     );
+        // ");
     }
 
     /**
@@ -26,8 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement(
-            'DROP TABLE IF EXISTS transaction;'
-        );
+        // DB::statement(
+        //     'DROP TABLE IF EXISTS transaction;'
+        // );
     }
 };

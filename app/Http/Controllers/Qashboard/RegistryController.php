@@ -67,20 +67,21 @@ class RegistryController extends Controller
                 ]
             );
 
-
-            for ($contador = 1; $contador <= $data['quantity_installment']; $contador++) {
-                $registry->installments()->updateOrCreate(
-                    [
-                        'current_installment' => $contador
-                    ],
-                    [
-                        'amount' => $data['amount'],
-                        'quantity_installment' => $data['quantity_installment'] ?? 1
-                    ]
-                );
-
+            if ($registry->installments->exists()) {
+                for ($contador = 1; $contador <= $data['quantity_installment']; $contador++) {
+                    $registry->installments()->create(
+                        [
+                            'current_installment' => $contador,
+                            'amount' => $data['amount'],
+                            'quantity_installment' => $data['quantity_installment'] ?? 1,
+                            'status' => 0
+                        ]
+                    );
+                }
             }
 
+            // $registry->load('installments');
+            dd($registry);
 
             return response()->json(['success' => 'Operação realizada com sucesso!'], 200);
         } catch (\Throwable $e) {
@@ -89,7 +90,7 @@ class RegistryController extends Controller
 
     }
     public function delete(Registry $registry)
-    {
+    {   
         $registry->delete();
         return response()->json(204);
     }

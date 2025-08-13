@@ -10,7 +10,8 @@ class Installment extends Model
         'amount',
         'quantity_installment',
         'current_installment',
-        'registry_id'
+        'registry_id',
+        'status'
 
     ];
     const CREATED_AT = 'created_at';
@@ -19,6 +20,11 @@ class Installment extends Model
     public function registry()
     {
         return $this->belongsTo(Registry::class, 'registry_id');
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return $this->status ? 'Pago' : 'Pendente';
     }
 
 }

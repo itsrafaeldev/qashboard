@@ -62,10 +62,10 @@
 
             <br>
 
-            <h3>##### TABELA DATAGRID #####</h3>
             <label for="amount">Preço</label>
             <br>
-            <input type="text" name="amount" id="amount" value="{{ $registry->id > 0 ? $registry->installments->first()->amount : '' }}">
+            <input type="text" name="amount" id="amount"
+                value="{{ $registry->id > 0 ? $registry->installments->first()->amount : '' }}">
             <br>
 
 
@@ -75,15 +75,21 @@
                 value="{{ $registry->id > 0 ? $registry->installments->count() : 1 }}" min="1">
 
             @if ($registry->id > 0)
-                <p>Total de Parcelas: {{$registry->installments->count()}}</p>
+                <h3>##### TABELA DATAGRID #####</h3>
+
+                <p>Total de Parcelas: {{ $registry->installments->count() }}</p>
                 <ul>
                     @foreach ($registry->installments as $installment)
                         <li>Parcela #{{ $installment->current_installment }} — Valor: R$
-                            {{ number_format($installment->value_installment, 2, ',', '.') }}</li>
+                            {{ number_format($installment->value_installment, 2, ',', '.') }} — Status:
+                            {{ $installment->getStatusLabelAttribute() }}</li>
                     @endforeach
                 </ul>
+                <h3>##### TABELA DATAGRID #####</h3>
             @endif
-            <h3>##### TABELA DATAGRID #####</h3>
+
+
+
 
             <br>
 
