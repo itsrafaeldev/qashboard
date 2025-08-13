@@ -31,7 +31,7 @@
 
     <div class="container-sidebar">
         <ul>
-            <a href="#">
+            <a href="{{ route('dashboards.list') }}">
                 <li>Dashboard</li>
             </a>
             <a href="{{ route('registries.list') }}">
