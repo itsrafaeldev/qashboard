@@ -9,7 +9,8 @@ class Registry extends Model
 {
     /** @use HasFactory<\Database\Factories\RegistryFactory> */
     use HasFactory;
-    protected $fillable = ['registry_name', 'status', 'registry_date', 'category_id', 'transaction_id', 'description'];
+    // Adicionar coluna competencia
+    protected $fillable = ['registry_name', 'status', 'registry_date', 'category_id', 'transaction_id', 'description', 'competence'];
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

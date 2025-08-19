@@ -40,6 +40,9 @@
             <a href="{{ route('categories.list') }}">
                 <li>Categorias</li>
             </a>
+            <a href="{{ route('credit-cards.list') }}">
+                <li>Cartões de Crédito</li>
+            </a>
             <a href="#">
                 <li>Sair</li>
             </a>

@@ -37,9 +37,6 @@ class RegistryFactory extends Factory
             "registry_name" => $this->faker->words(3, true),
             "status" => $this->faker->boolean(),
             "registry_date" => $this->faker->date(),
-            "amount" => $this->faker->randomFloat(2, 100.00, 99999.99),
-            "quantity_installment" => $this->faker->numberBetween($min = 1, $max = 12),
-            "current_installment" => $this->faker->numberBetween($min = 1, $max = 12),
             "description" => $this->faker->text(),
             "category_id" => $this->faker->numberBetween($min = 1, $max = 5),
             "transaction_id" => $this->faker->numberBetween($min = 1, $max = 2)

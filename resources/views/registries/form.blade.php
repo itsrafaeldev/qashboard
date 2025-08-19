@@ -14,6 +14,11 @@
 
             <input type="hidden" name="id" id="registry_id" value="{{ $registry->id }}">
 
+            <label for="transaction_id">Transação</label>
+            <br>
+            <input type="text" value="{{ $registry->transaction->description }}" disabled id="transaction_id" >
+
+            <br>
             <label for="registry_name">Nome do Registro</label>
             <br>
             <input type="text" name="registry_name" id="registry_name"
@@ -35,21 +40,12 @@
 
             <br>
 
-            <label for="registry_date">Data da compra</label>
+            <label for="registry_date">Data</label>
             <br>
             <input type="date" name="registry_date" id="registry_date"
                 value="{{ $registry->id > 0 ? $registry->registry_date : '' }}">
             <br>
 
-            <label for="transaction_id">Transação</label>
-            <br>
-            <select name="transaction_id" id="transaction_id">
-                @foreach ($transactions as $transaction)
-                    <option value="{{ $transaction->id }}">{{ $transaction->description }}</option>
-                @endforeach
-            </select>
-
-            <br>
 
             <label for="category_id">Categoria</label>
             <br>
@@ -61,6 +57,26 @@
             </select>
 
             <br>
+
+
+            <label for="is_credit_card">Compra realizada com cartao de crédito?</label>
+            <br>
+            <input type="checkbox" name="is_credit_card" id="is_credit_card" value="1">
+
+            <br>
+
+            <label for="credit_cards" id="for_credit_card" hidden=true>Cartão de Crédito</label>
+            <br>
+            <select name="credit_cards" id="credit_cards" hidden=true>
+                <option value="0">Selecione um cartao de crédito</option>
+                @foreach ($credit_cards as $credit_card)
+                    <option value="{{ $credit_card->id }}">{{ $credit_card->name }} ({{ $credit_card->final_number }})
+                    </option>
+                @endforeach
+            </select>
+
+            <br>
+
 
             <label for="amount">Preço</label>
             <br>
