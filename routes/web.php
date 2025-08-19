@@ -10,4 +10,5 @@ Route::group([], function () {
     include __DIR__ . '/group-routes/categories.php';
     include __DIR__ . '/group-routes/registries.php';
     include __DIR__ . '/group-routes/dashboards.php';
+    include __DIR__ . '/group-routes/credit-cards.php';
 });

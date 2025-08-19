@@ -13,10 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         $this->call([
-            CategorySeeder::class,
-            RegistrySeeder::class
+            // CategorySeeder::class,
+            // RegistrySeeder::class,
+            CreditCardSeeder::class,
         ]);
     }
 }

@@ -11,7 +11,9 @@ class Installment extends Model
         'quantity_installment',
         'current_installment',
         'registry_id',
-        'status'
+        'status',
+        'payment_date',
+        'competence'
 
     ];
     const CREATED_AT = 'created_at';
