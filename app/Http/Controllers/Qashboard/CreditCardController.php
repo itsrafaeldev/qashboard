@@ -30,6 +30,7 @@ class CreditCardController extends Controller
         $newCreditCard->name = $data['name'];
         $newCreditCard->final_number = $data['final_number'];
         $newCreditCard->closing_day = $data['closing_day'];
+        $newCreditCard->user_id = 6;
         $newCreditCard->save();
 
         return response()->json(['created'=>'Cartão de Crédico adicionado com sucesso!'], 201);
@@ -37,10 +38,7 @@ class CreditCardController extends Controller
 
     public function formEdit(CreditCard $creditCard)
     {
-
         $titleView = "Editar Cartão de Crédito";
-
-
         return view('credit-cards.form', compact( 'creditCard',  'titleView'));
     }
 

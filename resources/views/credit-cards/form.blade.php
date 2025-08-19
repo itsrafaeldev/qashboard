@@ -12,10 +12,10 @@
         <form action="{{ route('credit-cards.save') }}" method="post">
             @csrf
 
-            <input type="hidden" name="credit_card_id" id="credit_card_id" value="{{ $creditCard->id > 0 ? $creditCard->id : '' }}">
+            <input type="hidden" name="credit_card_id" id="credit_card_id" value="{{ $creditCard->id > 0 ? $creditCard->id : 0 }}">
 
             <label for="name">Nome do Cartão de Crédito</label>
-            <input type="text" name="name" id="cname"
+            <input type="text" name="name" id="name"
                 value="{{ $creditCard->id > 0 ? $creditCard->name : '' }}">
 
             <label for="final_number">Últimos 4 números</label>
