@@ -19,6 +19,11 @@ class Category extends Model
 
     }
 
+    public function registries()
+    {
+        return $this->hasMany(Registry::class); 
+    }
+
 
 
 
