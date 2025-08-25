@@ -34,8 +34,8 @@
             <label for="status">Status</label>
             <br>
             <select name="status" id="status">
-                <option value="0">Pendente</option>
-                <option value="1">Pago</option>
+                <option value="0" {{ $registry->status == false ? 'selected' : '' }}>Pendente</option>
+                <option value="1" {{ $registry->status == true ? 'selected' : '' }}>Pago</option>
             </select>
 
             <br>

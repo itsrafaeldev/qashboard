@@ -14,7 +14,6 @@ $("#btn-gravar").click(function (event) {
     const is_credit_card_value = $("#is_credit_card").val() == 1 ? true : false;
     const credit_card_id_value = $("#credit_cards").val();
 
-
     $.ajax({
         url: "/registries/save",
         method: "POST",
