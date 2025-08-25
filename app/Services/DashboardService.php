@@ -11,17 +11,26 @@ class DashboardService{
         return [
             'revenues' => $this->getRevenues("2025-08"),
             'expenses' => $this->getExpenses("2025-08"),
-            'balance' => $this->revenues - $this->expenses
+            'balance' => $this->revenues - $this->expenses,
+            'registriesPaidPercent'=>$this->registriesPaidPercent("2025-08")
         ];
     }
 
-    public function registriesPaidPercent($competencia){
+    public function registriesPaidPercent($competence){
+        $registries = Registry::where("competence", $competence)
+            ->with([
+                'installments' => function ($query) use ($competence) {
+                    $query->where('competence', $competence);
+        }])
+        ->get();
+
+        return $registries;
 
     }
 
-    public function getRevenues($competencia){
+    public function getRevenues($competence){
         $registryIds = Registry::where("transaction_id", 1)
-        ->where('competencia', $competencia)
+        ->where('competence', $competence)
         ->pluck('id');
 
         $this->revenues = Installment::whereIn('registry_id', $registryIds)
@@ -31,10 +40,10 @@ class DashboardService{
         return $this->revenues;
     }
 
-    public function getExpenses($competencia)
+    public function getExpenses($competence)
     {
         $registryIds = Registry::where("transaction_id", 2)
-            ->where('competencia', $competencia)
+            ->where('competence', $competence)
             ->pluck('id');
 
         $this->expenses = Installment::whereIn('registry_id', $registryIds)
@@ -45,7 +54,18 @@ class DashboardService{
     }
 
     public function getLatePayments($competencia){
+        
+    }
 
+    public function quantityRegistriesPaid($competence){
+        $registries = Registry::where("competence", $competence)
+            ->with([
+                'installments' => function ($query) use ($competence) {
+                    $query->where('competence', $competence)
+                    ->where('status', true);
+                }
+            ]);
+        return $registries->count();
     }
 
 
