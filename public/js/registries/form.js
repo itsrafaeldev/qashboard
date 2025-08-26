@@ -14,6 +14,7 @@ $("#btn-gravar").click(function (event) {
     const is_credit_card_value = $("#is_credit_card").val() == 1 ? true : false;
     const credit_card_id_value = $("#credit_cards").val();
 
+    console.log("credit_card_id_value: ", credit_card_id_value);
     $.ajax({
         url: "/registries/save",
         method: "POST",
@@ -80,7 +81,6 @@ $(document).ready(function () {
 });
 
 $("#is_credit_card, #for_credit_card").click(() => {
-    // $isMarked = $("#is_credit_card").val();
     if ($("#is_credit_card").prop("checked")) {
         $("#credit_cards").prop("hidden", false);
         $("#for_credit_card").prop("hidden", false);

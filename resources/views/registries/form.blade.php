@@ -40,7 +40,7 @@
 
             <br>
 
-            <label for="registry_date">Data</label>
+            <label for="registry_date">Data da compra/recebimento</label>
             <br>
             <input type="date" name="registry_date" id="registry_date"
                 value="{{ $registry->id > 0 ? $registry->registry_date : '' }}">

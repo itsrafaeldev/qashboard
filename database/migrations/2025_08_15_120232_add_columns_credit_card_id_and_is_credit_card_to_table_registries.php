@@ -17,7 +17,7 @@ return new class extends Migration
         DB::statement(
             'ALTER TABLE REGISTRIES
             ADD CONSTRAINT fk_credit_card
-            FOREIGN KEY (credit_card_id) REFERENCES registries(id)
+            FOREIGN KEY (credit_card_id) REFERENCES credit_cards(id)
             ON DELETE CASCADE;
             '
         );

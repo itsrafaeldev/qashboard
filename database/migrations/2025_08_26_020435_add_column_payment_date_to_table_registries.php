@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement('ALTER TABLE INSTALLMENTS ADD COLUMN payment_date DATE ');
+        DB::statement('ALTER TABLE REGISTRIES ADD COLUMN payment_date DATE ');
 
     }
 
@@ -20,7 +20,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement(query: 'ALTER TABLE INSTALLMENTS DROP payment_date;');
+        DB::statement(query: 'ALTER TABLE REGISTRIES DROP payment_date;');
 
     }
 };

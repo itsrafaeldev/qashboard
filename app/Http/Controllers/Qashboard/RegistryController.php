@@ -73,7 +73,7 @@ class RegistryController extends Controller
 
         }
 
-
+        // $data['credit_card_id'] = !empty($data['credit_card_id']) ? $data['credit_card_id'] : null;
 
         $registry = Registry::updateOrCreate(
             ['id' => $data['id'] ?? null],
@@ -85,13 +85,13 @@ class RegistryController extends Controller
                 'category_id' => $data['category_id'],
                 'registry_date' => $data['registry_date'],
                 'is_credit_card' => $data['is_credit_card'],
-                'credit_card_id' => $data['credit_card_id'],
+                'credit_card_id' => !empty($data['credit_card_id']) ? $data['credit_card_id'] : null,
                 'competence' => $competence->format('Y-m')
             ]
         );
-
+        // dd($registry);
         if ($registry->transaction_id == 2) {
-            //transacion_id = 2 = 'DESPESA'
+        //     //transacion_id = 2 = 'DESPESA'
             self::saveExpenses(
                 $data['quantity_installment'],
                 $data['amount'],
